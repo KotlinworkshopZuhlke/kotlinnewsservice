@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RestController
 class NewsController {
 
     @GetMapping("api/testnews")
-    fun fetchTestNews() =  NewsFeed(status = "", totalResults = 0, articles = listOf())
+    fun fetchTestNews() = NewsFeed(status = "", totalResults = 0, articles = listOf())
 
 }
