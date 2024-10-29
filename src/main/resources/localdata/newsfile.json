@@ -1,0 +1,136 @@
+{
+  "status": "ok",
+  "totalResults": 10,
+  "articles": [
+    {
+      "source": {
+        "id": "bbc-news",
+        "name": "BBC News"
+      },
+      "author": "BBC News",
+      "title": "Man who made 'depraved' child images with AI jailed for 18 years",
+      "description": "Student Hugh Nelson, 27, is sentenced for turning real photographs of children into indecent images.",
+      "url": "https://www.bbc.co.uk/news/articles/cq6l241z5mjo",
+      "urlToImage": "https://ichef.bbci.co.uk/news/1024/branded_news/9c50/live/255a2ed0-950f-11ef-875b-053ddaf3f72b.png",
+      "publishedAt": "2024-10-28T13:22:22.4216654",
+      "content": "Nelson used a computer programme to create the images and sold or exchanged them in an encrypted chatroom for paedophiles.\r\nThe court heard he took requests from people who wanted him to create expli… [+867 chars]"
+    },
+    {
+      "source": {
+        "id": "bbc-news",
+        "name": "BBC News"
+      },
+      "author": "BBC News",
+      "title": "Former Scotland rugby player dies after 1,000-mile charity cycle",
+      "description": "Ken MacAulay, 66 died following a cardiac arrest on Sunday after raising £13,000 for four charities.",
+      "url": "https://www.bbc.co.uk/news/articles/c4gm3md0kdko",
+      "urlToImage": "https://ichef.bbci.co.uk/news/1024/branded_news/5630/live/5d7db920-951f-11ef-9cde-517ea4c35d17.jpg",
+      "publishedAt": "2024-10-28T13:07:20.4065796",
+      "content": "In a statement his family said: \"We're so proud of him but overwhelmed by his loss at the same time.\r\n\"Ken's first response to receiving his retrospective cap was to use it as a platform to give back… [+966 chars]"
+    },
+    {
+      "source": {
+        "id": "bbc-news",
+        "name": "BBC News"
+      },
+      "author": "BBC News",
+      "title": "Tommy Robinson jailed for contempt of court",
+      "description": "He was jailed for republishing and distributing untrue claims about a Syrian refugee.",
+      "url": "https://www.bbc.co.uk/news/articles/c704eedkqkvo",
+      "urlToImage": "https://ichef.bbci.co.uk/news/1024/branded_news/e9ba/live/56980370-952b-11ef-8e6d-e3e64e16c628.jpg",
+      "publishedAt": "2024-10-28T13:07:18.9538149",
+      "content": "The hearing on Monday was the culmination of events that date back to October 2018.\r\nThat month, a video went viral showing how Jamal Hijazi, a Syrian in West Yorkshire, had been attacked by another … [+1109 chars]"
+    },
+    {
+      "source": {
+        "id": "bbc-news",
+        "name": "BBC News"
+      },
+      "author": "BBC News",
+      "title": "Strictly's Lauren Oakley steps in for Amy Dowden in training",
+      "description": "Oakley will train with JB Gill on Monday after his partner Amy Dowden fell ill at the weekend.",
+      "url": "https://www.bbc.co.uk/news/articles/c20656yy96yo",
+      "urlToImage": "https://ichef.bbci.co.uk/news/1024/branded_news/ca6a/live/ecfac9a0-9522-11ef-8e6d-e3e64e16c628.jpg",
+      "publishedAt": "2024-10-28T12:52:27.0624151",
+      "content": "Oakley, who doesn't have a celebrity partner this year, joined the BBC show in 2022.\r\nIn 2023, she was partnered with Channel 4 news presenter Krishnan Guru-Murthy. The pair finished in eighth place.… [+864 chars]"
+    },
+    {
+      "source": {
+        "id": "bbc-news",
+        "name": "BBC News"
+      },
+      "author": "BBC News",
+      "title": "Bus fares cap in England to be raised to £3",
+      "description": "Bus fares cap in England to be raised to £3",
+      "url": "https://www.bbc.co.uk/news/articles/cy0l99xz719o",
+      "urlToImage": "https://ichef.bbci.co.uk/news/1024/branded_news/94de/live/41669600-9527-11ef-b625-ed49b635f0e5.jpg",
+      "publishedAt": "2024-10-28T12:52:15.8286838",
+      "content": "The bus fare cap in England will be raised to £3 in the upcoming Budget, Prime Minister Sir Keir Starmer has announced.\r\nIt is an increase on the current limit of £2 which was introduced under the pr… [+247 chars]"
+    },
+    {
+      "source": {
+        "id": "bbc-news",
+        "name": "BBC News"
+      },
+      "author": "BBC News",
+      "title": "Ukraine war: Nato says North Korean troops deployed to Russia's Kursk region",
+      "description": "Mark Rutte said the deployment represented a \"dangerous expansion\" of Russia's war in Ukraine.",
+      "url": "https://www.bbc.co.uk/news/articles/cyv737vy376o",
+      "urlToImage": "https://ichef.bbci.co.uk/news/1024/branded_news/cc84/live/7cbaf740-951e-11ef-9cde-517ea4c35d17.jpg",
+      "publishedAt": "2024-10-28T12:07:24.7183601",
+      "content": "South Korea's spy agency said earlier this month that at least 1,500 North Korean troops had arrived in Russia, prompting Seoul to issue Moscow with a stern diplomatic rebuke. \r\nBut Rutte's intervent… [+711 chars]"
+    },
+    {
+      "source": {
+        "id": "bbc-news",
+        "name": "BBC News"
+      },
+      "author": "BBC News",
+      "title": "Neal's Yard's stolen cheese could be sold abroad, supplier says",
+      "description": "A supplier of cheese stolen in a £300,000 scam said the business was based on trust.",
+      "url": "https://www.bbc.co.uk/news/articles/c5ygw9ye90po",
+      "urlToImage": "https://ichef.bbci.co.uk/news/1024/branded_news/e308/live/394e0570-950e-11ef-875b-053ddaf3f72b.png",
+      "publishedAt": "2024-10-28T10:52:21.6400735",
+      "content": "Fraudsters posing as legitimate wholesalers received the 22 tonnes of clothbound cheeses from the Southwark-based company before it was realised they were a fake firm.\r\nThe high-value, award-winning … [+691 chars]"
+    },
+    {
+      "source": {
+        "id": "bbc-news",
+        "name": "BBC News"
+      },
+      "author": "BBC News",
+      "title": "Rachel Reeves’ tax-raising Budget will affect you for years",
+      "description": "The bean counters are back in control with a chancellor who wants to change the rules without rocking the boat.",
+      "url": "https://www.bbc.co.uk/news/articles/cz6jw0d2d02o",
+      "urlToImage": "https://ichef.bbci.co.uk/news/1024/branded_news/9f73/live/abf2a470-94b2-11ef-92bc-f32754a86da9.jpg",
+      "publishedAt": "2024-10-28T10:37:23.6405997",
+      "content": "What we have heard so far about the Budget sounds rather austere, but the chancellor is defining austerity as real-terms cuts in government departments. It appears departments will get top-ups to cop… [+3867 chars]"
+    },
+    {
+      "source": {
+        "id": "bbc-news",
+        "name": "BBC News"
+      },
+      "author": "BBC News",
+      "title": "Missing woman found with snakebite in remote mountains",
+      "description": "Lovisa Sjoberg disappeared after driving into the mountains to take photographs.",
+      "url": "https://www.bbc.co.uk/news/articles/cvgxxrj89j1o",
+      "urlToImage": "https://ichef.bbci.co.uk/news/1024/branded_news/92bf/live/6bfb1330-94b6-11ef-8e6d-e3e64e16c628.jpg",
+      "publishedAt": "2024-10-28T08:37:16.1089838",
+      "content": "Fears grew for her safety after a hire car company reported that her car had not been returned and she could not be contacted. Her car was later found unlocked and abandoned. \r\nNSW Police launched an… [+1017 chars]"
+    },
+    {
+      "source": {
+        "id": "bbc-news",
+        "name": "BBC News"
+      },
+      "author": "BBC News",
+      "title": "Why are Primrose Hill locals clashing with Paddington film tourists?",
+      "description": "And the street in London isn't the only place in the UK that has seen an influx of film fans either",
+      "url": "https://www.bbc.co.uk/news/articles/c4glgp7lynwo",
+      "urlToImage": "https://ichef.bbci.co.uk/news/1024/branded_news/acee/live/bee5da20-9223-11ef-8e6d-e3e64e16c628.jpg",
+      "publishedAt": "2024-10-28T00:52:19.7347719",
+      "content": "With its idyllic Regency-style terrace houses, Chalcot Crescent has long caught the eye of the many visitors that descend on Primrose Hill.\r\nBut the north London street is now attracting another type… [+1410 chars]"
+    }
+  ]
+}
