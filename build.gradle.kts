@@ -24,6 +24,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
+	// TODO Step 3.1: Exercise 2 Config Properties: Add the webflux dependency: org.springframework.boot:spring-boot-starter-webflux
 	runtimeOnly("com.h2database:h2")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
@@ -36,6 +37,7 @@ kotlin {
 	}
 }
 
+// TODO Step 3.2: Bonus question, why do you think Spring-initializer added these lines?
 allOpen {
 	annotation("jakarta.persistence.Entity")
 	annotation("jakarta.persistence.MappedSuperclass")
