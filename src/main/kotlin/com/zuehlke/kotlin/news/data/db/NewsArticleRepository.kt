@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository
 
 interface NewsArticleRepository : CrudRepository<NewsArticleEntity, Long> {
     fun findNewsArticleEntityById(id: Long): NewsArticleEntity?
-    fun findAllByOrderByAddedAtDesc(): Iterable<NewsArticleEntity>
+    fun findAllByOrderByPublishedAt(): Iterable<NewsArticleEntity>
 }
