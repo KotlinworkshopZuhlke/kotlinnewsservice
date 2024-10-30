@@ -15,6 +15,10 @@ class NewsController(val newsServiceRemote: NewsServiceRemote) {
         Article(source = ArticleSource())
     ))
 
+    /*
+    TODO Step 5: handle the fetcheNews() Result success or failure with a "when" statement
+     In case of Failure Reply with HTTP 404 NOT FOUND.
+     */
     @GetMapping("api/news")
     fun fetchNews() = newsServiceRemote.fetchNews()
 
