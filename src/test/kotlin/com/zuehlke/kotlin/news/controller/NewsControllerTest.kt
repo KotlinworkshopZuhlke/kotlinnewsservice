@@ -18,7 +18,7 @@ class NewsControllerTest {
     lateinit var mockMvc: MockMvc
 
     @MockBean
-    lateinit var newsServiceRemote: DataService
+    lateinit var dataService: DataService
 
     @Test
     fun `when api_testnews is called then response is a Newsfeed with a default acticle`() {
