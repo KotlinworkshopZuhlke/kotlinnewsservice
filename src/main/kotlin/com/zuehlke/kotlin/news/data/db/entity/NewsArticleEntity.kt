@@ -10,6 +10,7 @@ class NewsArticleEntity(
     var author: String? = null,
     var title: String? = null,
     var description: String? = null,
+    @Column(unique = true)
     var url: String? = null,
     var urlToImage: String? = null,
     var publishedAt: LocalDateTime? = null,

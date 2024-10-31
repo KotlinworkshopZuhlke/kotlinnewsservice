@@ -21,11 +21,22 @@ class DataServiceImpl(
             fetchNewsFromDB()
         } else {
             //save the result into the DB:
-            val dbEntitiesToBeSaved = newsFromRemote.getOrNull()?.articles?.map { it.mapToEntity() }
-            dbEntitiesToBeSaved?.let { newsServiceLocal.saveAll(it) }
+            val newsFeed = newsFromRemote.getOrNull()
+            newsFeed?.let { saveNonExistingArticlesToDBIn(it) }
 
             // return the Remote Result
             newsFromRemote
+        }
+    }
+
+    fun saveNonExistingArticlesToDBIn(newsFeed: NewsFeed) {
+        for (article in newsFeed.articles) {
+            article.url?.let {
+                val articleEntity = newsServiceLocal.findNewsArticleEntityByUrl(article.url)
+                if (articleEntity == null) {
+                    newsServiceLocal.save(article.mapToEntity())
+                }
+            }
         }
     }
 
