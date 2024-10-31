@@ -1,5 +1,6 @@
 package com.zuehlke.kotlin.news.domain
 
+import com.zuehlke.kotlin.news.model.Article
 import com.zuehlke.kotlin.news.model.NewsFeed
 
 interface DataService {
@@ -7,4 +8,6 @@ interface DataService {
     fun fetchNews(): Result<NewsFeed>
 
     fun fetchNewsFromDB(): Result<NewsFeed>
+
+    fun fetchFirstArticle(): Result<Article>
 }

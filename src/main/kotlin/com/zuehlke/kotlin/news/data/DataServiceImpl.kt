@@ -5,6 +5,7 @@ import com.zuehlke.kotlin.news.data.service.NewsServiceRemote
 import com.zuehlke.kotlin.news.domain.DataService
 import com.zuehlke.kotlin.news.domain.mapToEntity
 import com.zuehlke.kotlin.news.domain.mapToModel
+import com.zuehlke.kotlin.news.model.Article
 import com.zuehlke.kotlin.news.model.NewsFeed
 import org.springframework.stereotype.Service
 
@@ -52,5 +53,14 @@ class DataServiceImpl(
                 articles = articles
             )
         )
+    }
+
+    override fun fetchFirstArticle(): Result<Article> {
+        val articleFromDB = newsServiceLocal.findNewsArticleEntityById(1L)
+        return if (articleFromDB == null) {
+            Result.failure(RuntimeException("No article found"))
+        } else {
+            Result.success(articleFromDB.mapToModel())
+        }
     }
 }
