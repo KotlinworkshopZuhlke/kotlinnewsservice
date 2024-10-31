@@ -1,14 +1,11 @@
 package com.zuehlke.kotlin.news.data.db.entity
 
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.Id
-import jakarta.persistence.ManyToOne
+import jakarta.persistence.*
 import java.time.LocalDateTime
 
 @Entity
-class NewsArticleEntity (
-    @ManyToOne
+class NewsArticleEntity(
+    @ManyToOne(cascade = [CascadeType.ALL])
     var source: ArticleSourceEntity? = null,
     var author: String? = null,
     var title: String? = null,
@@ -24,7 +21,7 @@ class NewsArticleEntity (
 )
 
 @Entity
-class ArticleSourceEntity (
+class ArticleSourceEntity(
     var name: String? = null,
 
     @Id

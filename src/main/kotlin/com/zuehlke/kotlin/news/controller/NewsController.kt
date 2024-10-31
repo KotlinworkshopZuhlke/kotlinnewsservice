@@ -17,9 +17,12 @@ class NewsController(val dataService: DataService) {
         )
     )
 
-    /*
-    TODO Step 5: handle the fetcheNews() Result success or failure with a "getOrThrow" statement.
-     */
+    @GetMapping("api/dbnews")
+    fun fetchDBTestNews(): NewsFeed {
+        val result = dataService.fetchNewsFromDB()
+        return result.getOrThrow()
+    }
+
     @GetMapping("api/news")
     fun fetchNews(): NewsFeed {
         val result = dataService.fetchNews()
