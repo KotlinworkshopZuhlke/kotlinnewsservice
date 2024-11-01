@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service
 @Service
 class HtmlRenderServiceImpl : HtmlRenderService {
     override fun renderArticle(article: Article): String {
+// TODO Step 9: Uncomment and test the article. The NewsController already has a path for it.
 
 //        return html {
 //            head {

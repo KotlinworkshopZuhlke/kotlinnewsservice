@@ -38,11 +38,24 @@ class TextElement(val text: String) : Element {
     }
 }
 
+
+// TODO Step 1 It should be forbidden to do the following
+/*
+html {
+    head {
+        head {} // should be forbidden
+    }
+    // ...
+}
+ */
+// TODO Kotlin provides the '@DslMarker' to have the compiler control the scopes. An annotation with '@DslMarker' can
+//  annotate any Builder, which you want to control.
 //@DslMarker
 //annotation class HtmlTagMarker
-//
-//@HtmlTagMarker
 
+//TODO Step 2: Apply the created annotation to the Tag, since all our Builder inherit from 'Tag',
+// the above annotation can be used.
+//@HtmlTagMarker
 abstract class Tag(val name: String) : Element {
     val children = arrayListOf<Element>()
     val attributes = hashMapOf<String, String>()
@@ -87,6 +100,45 @@ class Title : TagWithText("title")
 class Head : TagWithText("head") {
     fun title(init: Title.() -> Unit) = initTag(Title(), init)
 }
+
+// TODO Step 3: Create an abstract class BodyTag which extends TagWithText.
+//  Leave it empty for now, we will add the functions to it in the next step.
+
+/*
+ TODO Step 4: Create a class Body that extends BodyTag("body")
+  Similarly to the head inside the HTML, add also a function called 'body' inside the HTML class.
+ */
+
+/*
+ TODO Step 5: Create a class B that extends BodyTag("b")
+  Add a function 'b' to the abstract BodyTag class, which takes an 'init' parameter of type B.()->Unit. As with 'head'-
+  function inside the HTML, it will call the initTag with a new instance of B and the 'init' from the function parameter.
+ */
+
+/*
+TODO Step 6: Repeat this for P "p", and h1 "h1"
+ */
+
+/*
+TODO Step 7: Now we want to create the Link Tag: <a href="some link"></a>
+ Ass you see this tag has an argument 'href'
+ Create a class A that extends BodyTag("a"). It should have a mutable property 'href' of type String.
+ Use property delegation
+  The getter should retrieve attributes["href]
+  The setter should assign the value to attributes["href"]
+ */
+
+/*
+TODO Step 8: Add the function called 'a' to the BodyTag class. Different than the other functions there, 'a' will have
+ an additional first function parameter 'href' which is simply String. The second argument will be the usual 'init' lambda
+  Inside the implementation you should not only call initTag with A(), but then also set the href value on the 'initTag'
+   returned Tag!
+
+   That's it: go to the HtmlRenderServiceImpl, run the Spring Boot app and see the first news saved.
+   // first call "/api/news", to save the news in the DB.  Then call "ui/article" to see an article from the DB
+   rendered with your HTML-DSL :)
+ */
+
 
 class HTML : TagWithText("html") {
 
