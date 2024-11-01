@@ -1,5 +1,7 @@
 package com.zuehlke.kotlin.news.domain.htmldsl
 
+import org.w3c.dom.Text
+
 /*
 TODO: Goal:
  In this exercise you will implement your own HTML-Kotlin type-safe DSL language, which will allow you to generate
@@ -18,7 +20,7 @@ interface Element {
 
 class TextElement(val text: String) : Element {
     override fun render(builder: StringBuilder, indent: String) {
-        //TODO Step 1: fill out the rendering function. Simply append to the builder the 'indent' and then the 'text'
+        builder.append(indent + text + "\n")
     }
 }
 
@@ -43,18 +45,19 @@ abstract class Tag(val name: String) : Element {
     }
 
     private fun renderAttributes(): String {
-        // TODO Step 2: Go through all attributes and create the string which will be added inside the TAG
-        //  This function can be used in the subsequent render function
-        //  "<TagName [renderAttributes()] > children </TagName>" or
-        //  "<TagName [renderAttributes()] \>"
-        TODO()
+        val builder = StringBuilder()
+        for ((key, value) in attributes) {
+            builder.append(" $key=\"$value\"")
+        }
+        return builder.toString()
     }
 
     override fun render(builder: StringBuilder, indent: String) {
-        // TODO Step 3: Append to the String Builder the following:
-        //  [name] is the Tag-name create the whole string for the complete tag:
-        //  indent<name renderAttributes()> [render all children] indent</name>
-        // you can use the above function renderAttributes()
+        builder.append(indent + "<$name${renderAttributes()}>" + "\n")
+        for (child in children) {
+            child.render(builder, "$indent   ")
+        }
+        builder.append("$indent</$name>\n")
     }
 
     override fun toString(): String {
@@ -64,45 +67,28 @@ abstract class Tag(val name: String) : Element {
     }
 }
 
-
-/*
-TODO Step 4: Create an abstract class called 'TagWithText' which extends 'Tag'
- It should have a function which overloads the '+' operator for String,  (an extension function of String)
- Check: https://kotlinlang.org/docs/operator-overloading.html#unary-prefix-operators
- For extension functions: https://kotlinworkshopzuhlke.github.io/KotlinWorkshopPresentation/slides/basicsyntax/basicsyntax.html#/5/5
-  the function overloading the "+" operator should add a TextElement(this) to the children. ("this" being the String it extends)
- */
-
-
-/*
- TODO Step 5: Create class 'Title' with an empty constructor, which extends TagWithText("title").
-  Since Title extends TagWithText, it already defines the function '+', which adds a TextElement to the children.
-   Thats all we need for this class.
- */
-
-/*
- TODO Step 6:
-  To be able to write 'title{+"Kotlin Course"}' we need to define a function called 'title' that takes a lambda.
-  </title> is an element that can only be inside a Head-Element
-  Lets create a class 'Head', which extends TagWithText("head")
-  it should define a function 'title' which has a lambda-argument 'init' of type Title.() -> Unit. the functions
-   implementation should initialise the Tag. We already have defined a generic initTag function, so we can simply call
-   that with a new Title and the passed 'init'.
-   Remember: In Kotlin all functions have a return type. If there is nothing specified it will return 'Unit'.
-  Like this we should be able to call title{+"Kotlin Course"} from a Head element.
- */
-
-
-/*
-TODO Step 7: Similarly to step 6, we want to be able to call
-    """
-    head{
-        title{+"Kotlin Course"}
+abstract class TagWithText(name: String) : Tag(name) {
+    operator fun String.unaryPlus() {
+        children.add(TextElement(this))
     }
-    """  only inside an HTML Element.
- Create a class HTML which extends TagWithText("html"), which should have a head function with a similar implementation
-  as in the previous step. It should initialise the 'Head'
-*/
+}
+
+class Title : TagWithText("title")
+
+class Head : TagWithText("head") {
+    fun title(init: Title.() -> Unit) = initTag(Title(), init)
+}
+
+class HTML : TagWithText("html") {
+
+    fun head(init: Head.() -> Unit) = initTag(Head(), init)
+}
+
+fun html(init: HTML.() -> Unit): HTML {
+    val root = HTML()
+    root.init()
+    return root
+}
 
 /*
 TODO Step 8: Create a function html which takes an argument called 'init' of type: HTML.() -> Unit and returns an HTML.
