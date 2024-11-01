@@ -1,19 +1,37 @@
 package com.zuehlke.kotlin.news.domain.htmldsl
 
+/*
+TODO: Goal:
+ In this exercise you will implement your own HTML-Kotlin type-safe DSL language, which will allow you to generate
+ HTML with your own Kotlin-DSL:
+"""
+         html {
+            head {
+                title { +"Kotlin Course" }
+            }
+        }
+    """
+ */
 interface Element {
     fun render(builder: StringBuilder, indent: String)
 }
 
 class TextElement(val text: String) : Element {
     override fun render(builder: StringBuilder, indent: String) {
-        builder.append("$indent$text\n")
+        //TODO Step 1: fill out the rendering function. Simply append to the builder the 'indent' and then the 'text'
     }
 }
 
-@DslMarker
-annotation class HtmlTagMarker
+//@DslMarker
+//annotation class HtmlTagMarker
+//
+//@HtmlTagMarker
 
-@HtmlTagMarker
+/*
+TODO: Fill in the gaps for an HTML Tag.
+ Reminder- an HTML Tag looks like this:
+ <TagName attribute="value">children</TagName>
+ */
 abstract class Tag(val name: String) : Element {
     val children = arrayListOf<Element>()
     val attributes = hashMapOf<String, String>()
@@ -25,20 +43,18 @@ abstract class Tag(val name: String) : Element {
     }
 
     private fun renderAttributes(): String {
-
-        val builder = StringBuilder()
-        for ((attr, value) in attributes) {
-            builder.append(" $attr=\"$value\"")
-        }
-        return builder.toString()
+        // TODO Step 2: Go through all attributes and create the string which will be added inside the TAG
+        //  This function can be used in the subsequent render function
+        //  "<TagName [renderAttributes()] > children </TagName>" or
+        //  "<TagName [renderAttributes()] \>"
+        TODO()
     }
 
     override fun render(builder: StringBuilder, indent: String) {
-        builder.append("$indent<$name${renderAttributes()}>\n")
-        for (c in children) {
-            c.render(builder, indent + "  ")
-        }
-        builder.append("$indent</$name>\n")
+        // TODO Step 3: Append to the String Builder the following:
+        //  [name] is the Tag-name create the whole string for the complete tag:
+        //  indent<name renderAttributes()> [render all children] indent</name>
+        // you can use the above function renderAttributes()
     }
 
     override fun toString(): String {
@@ -48,63 +64,58 @@ abstract class Tag(val name: String) : Element {
     }
 }
 
-abstract class TagWithText(name: String) : Tag(name) {
-    operator fun String.unaryPlus() {
-        children.add(TextElement(this))
+
+/*
+TODO Step 4: Create an abstract class called 'TagWithText' which extends 'Tag'
+ It should have a function which overloads the '+' operator for String,  (an extension function of String)
+ Check: https://kotlinlang.org/docs/operator-overloading.html#unary-prefix-operators
+ For extension functions: https://kotlinworkshopzuhlke.github.io/KotlinWorkshopPresentation/slides/basicsyntax/basicsyntax.html#/5/5
+  the function overloading the "+" operator should add a TextElement(this) to the children. ("this" being the String it extends)
+ */
+
+
+/*
+ TODO Step 5: Create class 'Title' with an empty constructor, which extends TagWithText("title").
+  Since Title extends TagWithText, it already defines the function '+', which adds a TextElement to the children.
+   Thats all we need for this class.
+ */
+
+/*
+ TODO Step 6:
+  To be able to write 'title{+"Kotlin Course"}' we need to define a function called 'title' that takes a lambda.
+  </title> is an element that can only be inside a Head-Element
+  Lets create a class 'Head', which extends TagWithText("head")
+  it should define a function 'title' which has a lambda-argument 'init' of type Title.() -> Unit. the functions
+   implementation should initialise the Tag. We already have defined a generic initTag function, so we can simply call
+   that with a new Title and the passed 'init'.
+   Remember: In Kotlin all functions have a return type. If there is nothing specified it will return 'Unit'.
+  Like this we should be able to call title{+"Kotlin Course"} from a Head element.
+ */
+
+
+/*
+TODO Step 7: Similarly to step 6, we want to be able to call
+    """
+    head{
+        title{+"Kotlin Course"}
     }
-}
+    """  only inside an HTML Element.
+ Create a class HTML which extends TagWithText("html"), which should have a head function with a similar implementation
+  as in the previous step. It should initialise the 'Head'
+*/
 
-class HTML : TagWithText("html") {
-    fun head(init: Head.() -> Unit) = initTag(Head(), init)
-
-    fun body(init: Body.() -> Unit) = initTag(Body(), init)
-}
-
-class Head : TagWithText("head") {
-    fun title(init: Title.() -> Unit) = initTag(Title(), init)
-}
-
-
-class Title : TagWithText("title")
-
-abstract class BodyTag(name: String) : TagWithText(name) {
-    fun b(init: B.() -> Unit) = initTag(B(), init)
-    fun p(init: P.() -> Unit) = initTag(P(), init)
-    fun h1(init: H1.() -> Unit) = initTag(H1(), init)
-    fun a(href: String, init: A.() -> Unit) {
-        val a = initTag(A(), init)
-        a.href = href
+/*
+TODO Step 8: Create a function html which takes an argument called 'init' of type: HTML.() -> Unit and returns an HTML.
+ The function should create a new HTML and call init on it and then return it.
+ Great! Now you can already generate your first simple HTML
+ Now you should be able to render your first HTML. Write
+  """
+  html {
+    head {
+        title{+"Kotlin Course"}
     }
+  }
 
-    fun img(src: String, init: Img.() -> Unit) {
-        val img = initTag(Img(), init)
-        img.src = src
-    }
-}
+  Move to the next branch exercise/7_html_rendering_part2 for the rest of your DSL
+ */
 
-class Body : BodyTag("body")
-class B : BodyTag("b")
-class P : BodyTag("p")
-class H1 : BodyTag("h1")
-
-class A : BodyTag("a") {
-    var href: String
-        get() = attributes["href"]!!
-        set(value) {
-            attributes["href"] = value
-        }
-}
-
-class Img : BodyTag("img") {
-    var src: String
-        get() = attributes["src"]!!
-        set(value) {
-            attributes["src"] = value
-        }
-}
-
-fun html(init: HTML.() -> Unit): HTML {
-    val html = HTML()
-    html.init()
-    return html
-}
