@@ -6,12 +6,26 @@ import org.w3c.dom.Text
 TODO: Goal:
  In this exercise you will implement your own HTML-Kotlin type-safe DSL language, which will allow you to generate
  HTML with your own Kotlin-DSL:
+ Now we will extend our previously created DSL to also be able to add more elements to the DSL
 """
-         html {
-            head {
-                title { +"Kotlin Course" }
-            }
-        }
+            html {
+//            head {
+//                title { +"News Article from News Service!" }
+//            }
+//            body {
+//                h1 { +"${article.title}" }
+//
+//                // an element with attributes and text content
+//                a(href = "${article.url}") { +"Link to Article" }
+//
+//                // mixed content
+//                p {
+//                    +"${article.description}"
+//                    b { +" -${article.author}" }
+//                }
+//                img(src = "${article.urlToImage}") {}
+//            }
+//        }
     """
  */
 interface Element {
@@ -29,11 +43,6 @@ class TextElement(val text: String) : Element {
 //
 //@HtmlTagMarker
 
-/*
-TODO: Fill in the gaps for an HTML Tag.
- Reminder- an HTML Tag looks like this:
- <TagName attribute="value">children</TagName>
- */
 abstract class Tag(val name: String) : Element {
     val children = arrayListOf<Element>()
     val attributes = hashMapOf<String, String>()
@@ -89,19 +98,3 @@ fun html(init: HTML.() -> Unit): HTML {
     root.init()
     return root
 }
-
-/*
-TODO Step 8: Create a function html which takes an argument called 'init' of type: HTML.() -> Unit and returns an HTML.
- The function should create a new HTML and call init on it and then return it.
- Great! Now you can already generate your first simple HTML
- Now you should be able to render your first HTML. Write
-  """
-  html {
-    head {
-        title{+"Kotlin Course"}
-    }
-  }
-
-  Move to the next branch exercise/7_html_rendering_part2 for the rest of your DSL
- */
-
