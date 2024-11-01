@@ -48,9 +48,11 @@ abstract class Tag(val name: String) : Element {
 
     override fun render(builder: StringBuilder, indent: String) {
         // TODO Step 3: Append to the String Builder the following:
-        //  [name] is the Tag-name create the whole string for the complete tag:
-        //  indent<name renderAttributes()> [render all children] indent</name>
-        //  to render the children go through al children and call their "render" function and pass in the StringBuilder.
+        //  [name] is the Tag-name. Create the whole string for the complete tag:
+        //
+    //      TODO: indent<name renderAttributes()>[new line][render all children] indent</name>[new line]
+
+        // TODO: To render the children go through al children and call their "render" function and pass in the StringBuilder.
         //  you can use the above function renderAttributes()
         //  Add an end of line after <name renderAttributes()>
         //  Increase the given indent for each child by a few spaces.
@@ -89,6 +91,7 @@ TODO Step 4: Create an abstract class called 'TagWithText' which extends 'Tag'
    that with a new Title and the passed 'init'.
    Remember: In Kotlin all functions have a return type. If there is nothing specified it will return 'Unit'.
   Like this we should be able to call title{+"Kotlin Course"} from a Head element.
+  Uncomment the Test1 inside the HtmlRenderingTest.kt file to check your implementation.
  */
 
 
@@ -114,6 +117,7 @@ TODO Step 8: Create a function html which takes an argument called 'init' of typ
         title{+"Kotlin Course"}
     }
   }
+  Uncomment Test2 inside the HtmlRenderingTest.kt file, to check your implementation.
 
   Move to the next branch exercise/7_html_rendering_part2 for the rest of your DSL
  */
