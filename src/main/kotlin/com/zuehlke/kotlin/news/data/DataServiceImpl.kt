@@ -1,6 +1,7 @@
 package com.zuehlke.kotlin.news.data
 
 import com.zuehlke.kotlin.news.data.db.NewsArticleRepository
+import com.zuehlke.kotlin.news.data.db.NoDuplicateNewsArticleRepository
 import com.zuehlke.kotlin.news.data.service.NewsServiceRemote
 import com.zuehlke.kotlin.news.domain.DataService
 import com.zuehlke.kotlin.news.domain.mapToEntity
@@ -12,8 +13,7 @@ import org.springframework.stereotype.Service
 @Service
 class DataServiceImpl(
     private val newsServiceRemote: NewsServiceRemote,
-    // TODO STEP: 2: replace with the newly created NoDuplicateNewsArticleRepository
-    private val newsServiceLocal: NewsArticleRepository
+    private val newsServiceLocal: NoDuplicateNewsArticleRepository
 ) : DataService {
     override fun fetchNews(): Result<NewsFeed> {
 
@@ -34,13 +34,7 @@ class DataServiceImpl(
     fun saveNonExistingArticlesToDBIn(newsFeed: NewsFeed) {
         for (article in newsFeed.articles) {
             article.url?.let {
-                /*
-                TODO: This check can be removed with the NoDuplicateNewsArticleRepository
-                 */
-                val articleEntity = newsServiceLocal.findNewsArticleEntityByUrl(article.url)
-                if (articleEntity == null) {
-                    newsServiceLocal.save(article.mapToEntity())
-                }
+                newsServiceLocal.save(article.mapToEntity())
             }
         }
     }
