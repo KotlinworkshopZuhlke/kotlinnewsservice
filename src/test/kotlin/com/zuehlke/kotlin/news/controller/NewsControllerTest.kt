@@ -1,6 +1,5 @@
 package com.zuehlke.kotlin.news.controller
 
-import com.zuehlke.kotlin.news.data.service.NewsServiceRemote
 import com.zuehlke.kotlin.news.domain.DataService
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
