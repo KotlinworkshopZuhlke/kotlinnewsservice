@@ -22,10 +22,11 @@ repositories {
 val mockitoAgent = configurations.create("mockitoAgent")
 
 dependencies {
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
-    // TODO Step 3.1: Exercise 2 Config Properties: Add the webflux dependency: org.springframework.boot:spring-boot-starter-webflux
+	// TODO Step 3.1: Exercise 2 Config Properties: Add the webflux dependency: org.springframework.boot:spring-boot-starter-webflux
     implementation("tools.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     runtimeOnly("com.h2database:h2")
