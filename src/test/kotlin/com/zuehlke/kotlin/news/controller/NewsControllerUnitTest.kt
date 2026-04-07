@@ -8,7 +8,7 @@ import io.kotest.core.spec.style.FeatureSpec
 import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.collections.shouldNotContain
 import io.kotest.matchers.shouldNotBe
-import org.springframework.boot.test.mock.mockito.MockBean
+import org.mockito.Mockito.mock
 
 class NewsControllerUnitTest : FeatureSpec(
     {
@@ -35,8 +35,7 @@ class NewsControllerUnitTest : FeatureSpec(
     }
 )
 
-@MockBean
-lateinit var newsServiceRemote: DataService
+val newsServiceRemote: DataService = mock()
 
 private fun postArticleAndFetchNews(article: Article?): NewsFeed {
     val newsController = NewsController(newsServiceRemote, HtmlRenderServiceImpl())
