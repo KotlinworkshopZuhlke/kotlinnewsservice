@@ -1,6 +1,7 @@
 package com.zuehlke.kotlin.news.controller
 
 import com.zuehlke.kotlin.news.domain.DataService
+import com.zuehlke.kotlin.news.domain.HtmlRenderService
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest
@@ -19,6 +20,9 @@ class NewsControllerTest {
 
     @MockitoBean
     lateinit var newsServiceRemote: DataService
+
+    @MockitoBean
+    lateinit var htmlRenderService: HtmlRenderService
 
     @Test
     fun `when api_testnews is called then response is a Newsfeed with a default acticle`() {
