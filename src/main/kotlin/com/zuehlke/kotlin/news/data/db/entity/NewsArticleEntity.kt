@@ -17,6 +17,7 @@ class NewsArticleEntity {
     var urlToImage: String? = null
     var publishedAt: LocalDateTime? = null
     var content: String? = null
+    var addedAt: LocalDateTime? = null
 
     @Id
     @GeneratedValue
