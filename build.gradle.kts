@@ -19,6 +19,8 @@ repositories {
     mavenCentral()
 }
 
+val mockitoAgent = configurations.create("mockitoAgent")
+
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-web")
@@ -32,11 +34,14 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-actuator-test")
     testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+    testImplementation("org.mockito:mockito-core:+")
 
 	// Kotest dependencies for Kotest-specific tests
 	testImplementation("io.kotest:kotest-runner-junit5:5.7.2") // Updated version
 	testImplementation("io.kotest:kotest-assertions-core:5.7.2")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+    mockitoAgent("org.mockito:mockito-core:+") { isTransitive = false }
 }
 
 kotlin {
@@ -53,4 +58,5 @@ allOpen {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+    jvmArgs.add("-javaagent:${mockitoAgent.asPath}")
 }
