@@ -2,6 +2,7 @@ package com.zuehlke.kotlin.news.data.db
 
 import com.zuehlke.kotlin.news.data.db.entity.NewsArticleEntity
 import com.zuehlke.kotlin.news.domain.mapToEntity
+import org.springframework.stereotype.Repository
 
 /**
  * TODO: STEP 1:
@@ -11,9 +12,10 @@ import com.zuehlke.kotlin.news.domain.mapToEntity
  *  Use Kotlin's Class Delegation!!
  */
 
+@Repository
 class NoDuplicateNewsArticleRepository (private val repository: NewsArticleRepository): NewsArticleRepository by repository {
 
-    override fun <S : NewsArticleEntity?> save(entity: S & Any): S & Any {
+    override fun <S : NewsArticleEntity> save(entity: S): S {
         val articleEntity = findNewsArticleEntityByUrl(entity.url?: "")
         if (articleEntity == null) {
             return repository.save(entity)
@@ -22,7 +24,7 @@ class NoDuplicateNewsArticleRepository (private val repository: NewsArticleRepos
     }
 
     override fun <S : NewsArticleEntity> saveAll(entities: MutableIterable<S>): MutableIterable<S> {
-        entities.forEach{
+        entities.forEach {
             save(it)
         }
         return entities
